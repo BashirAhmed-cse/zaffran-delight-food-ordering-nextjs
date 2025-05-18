@@ -8,30 +8,43 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loginInProgress, setLoginInProgress] = useState(false);
 
-  async function handleFormSubmit(ev) {
-    ev.preventDefault();
-    setLoginInProgress(true);
+ async function handleFormSubmit(ev) {
+  ev.preventDefault();
+  setLoginInProgress(true);
 
-    await signIn('credentials', {email, password, callbackUrl: '/'});
+  const result = await signIn('credentials', {
+    email,
+    password,
+    redirect: false,  // Important! Prevent automatic redirect
+  });
 
-    setLoginInProgress(false);
+  setLoginInProgress(false);
+
+  if (result?.error) {
+    alert('Login failed: ' + result.error);
+  } else if (result?.ok) {
+    // redirect manually on success
+    alert('login success: ');
+   window.location.href = result.url ?? '/';
   }
+}
+
   return (
     <section className="mt-8">
-      <h1 className="text-center text-primary text-4xl mb-4">
+      {/* <h1 className="text-center text-primary text-4xl mb-4">
         Login
-      </h1>
+      </h1> */}
       <form className="max-w-xs mx-auto" onSubmit={handleFormSubmit}>
-        <input type="email" name="email" placeholder="email" value={email}
+        {/* <input type="email" name="email" placeholder="email" value={email}
                disabled={loginInProgress}
                onChange={ev => setEmail(ev.target.value)} />
         <input type="password" name="password" placeholder="password" value={password}
                disabled={loginInProgress}
                onChange={ev => setPassword(ev.target.value)}/>
-        <button disabled={loginInProgress} type="submit">Login</button>
-        <div className="my-4 text-center text-gray-500">
+        <button disabled={loginInProgress} type="submit">Login</button> */}
+        {/* <div className="my-4 text-center text-gray-500">
           or login with provider
-        </div>
+        </div> */}
         <button type="button" onClick={() => signIn('google', {callbackUrl: '/'})}
                 className="flex gap-4 justify-center">
           <Image src={'/google.png'} alt={''} width={24} height={24} />

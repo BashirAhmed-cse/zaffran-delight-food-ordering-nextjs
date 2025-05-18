@@ -5,22 +5,48 @@ import mongoose from "mongoose";
 export async function POST(req) {
   mongoose.connect(process.env.MONGO_URL);
   const data = await req.json();
-  if (await isAdmin()) {
+
+  if (!(await isAdmin())) {
+    return Response.json({}, { status: 403 });
+  }
+
+  // ✅ Validate `category` field
+  if (!data.category || !mongoose.Types.ObjectId.isValid(data.category)) {
+    return Response.json({ error: "Invalid or missing category" }, { status: 400 });
+  }
+
+  try {
     const menuItemDoc = await MenuItem.create(data);
     return Response.json(menuItemDoc);
-  } else {
-    return Response.json({});
+  } catch (error) {
+    console.error(error);
+    return Response.json({ error: "Failed to create menu item" }, { status: 500 });
   }
 }
 
+
 export async function PUT(req) {
   mongoose.connect(process.env.MONGO_URL);
-  if (await isAdmin()) {
-    const {_id, ...data} = await req.json();
-    await MenuItem.findByIdAndUpdate(_id, data);
+  if (!(await isAdmin())) {
+    return Response.json({}, { status: 403 });
   }
-  return Response.json(true);
+
+  const { _id, ...data } = await req.json();
+
+  // ✅ Validate category if present
+  if (data.category && !mongoose.Types.ObjectId.isValid(data.category)) {
+    return Response.json({ error: "Invalid category" }, { status: 400 });
+  }
+
+  try {
+    await MenuItem.findByIdAndUpdate(_id, data);
+    return Response.json(true);
+  } catch (error) {
+    console.error(error);
+    return Response.json({ error: "Failed to update menu item" }, { status: 500 });
+  }
 }
+
 
 export async function GET() {
   mongoose.connect(process.env.MONGO_URL);

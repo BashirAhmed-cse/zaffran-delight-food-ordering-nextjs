@@ -10,6 +10,7 @@ export default function RegisterPage() {
   const [creatingUser, setCreatingUser] = useState(false);
   const [userCreated, setUserCreated] = useState(false);
   const [error, setError] = useState(false);
+  const name="test";
   async function handleFormSubmit(ev) {
     ev.preventDefault();
     setCreatingUser(true);
@@ -17,7 +18,7 @@ export default function RegisterPage() {
     setUserCreated(false);
     const response = await fetch('/api/register', {
       method: 'POST',
-      body: JSON.stringify({email, password}),
+      body: JSON.stringify({email, password,name}),
       headers: {'Content-Type': 'application/json'},
     });
     if (response.ok) {
@@ -30,10 +31,10 @@ export default function RegisterPage() {
   }
   return (
     <section className="mt-8">
-      <h1 className="text-center text-primary text-4xl mb-4">
+      {/* <h1 className="text-center text-primary text-4xl mb-4">
         Register
-      </h1>
-      {userCreated && (
+      </h1> */}
+      {/* {userCreated && (
         <div className="my-4 text-center">
           User created.<br />
           Now you can{' '}
@@ -45,9 +46,9 @@ export default function RegisterPage() {
           An error has occurred.<br />
           Please try again later
         </div>
-      )}
+      )} */}
       <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
-        <input type="email" placeholder="email" value={email}
+        {/* <input type="email" placeholder="email" value={email}
                disabled={creatingUser}
                onChange={ev => setEmail(ev.target.value)} />
         <input type="password" placeholder="password" value={password}
@@ -58,12 +59,12 @@ export default function RegisterPage() {
         </button>
         <div className="my-4 text-center text-gray-500">
           or login with provider
-        </div>
+        </div> */}
         <button
           onClick={() => signIn('google', {callbackUrl:'/'})}
           className="flex gap-4 justify-center">
           <Image src={'/google.png'} alt={''} width={24} height={24} />
-          Login with google
+          Register with google
         </button>
         <div className="text-center my-4 text-gray-500 border-t pt-4">
           Existing account?{' '}
