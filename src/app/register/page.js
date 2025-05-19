@@ -10,7 +10,7 @@ export default function RegisterPage() {
   const [creatingUser, setCreatingUser] = useState(false);
   const [userCreated, setUserCreated] = useState(false);
   const [error, setError] = useState(false);
-  const name="test";
+
   async function handleFormSubmit(ev) {
     ev.preventDefault();
     setCreatingUser(true);
@@ -18,7 +18,7 @@ export default function RegisterPage() {
     setUserCreated(false);
     const response = await fetch('/api/register', {
       method: 'POST',
-      body: JSON.stringify({email, password,name}),
+      body: JSON.stringify({email, password}),
       headers: {'Content-Type': 'application/json'},
     });
     if (response.ok) {
