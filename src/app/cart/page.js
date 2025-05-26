@@ -47,6 +47,12 @@ export default function CartPage() {
     ev.preventDefault();
     // address and shopping cart products
 
+    if (!profileData?._id) {
+    toast.error('Please log in to proceed with checkout.');
+    window.location.href = '/login';
+    return;
+  }
+
     const promise = new Promise((resolve, reject) => {
       fetch('/api/checkout', {
         method: 'POST',
