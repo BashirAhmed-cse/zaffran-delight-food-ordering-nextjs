@@ -1,0 +1,109 @@
+#hero {
+    width: 100%;
+    height: 100vh;
+    background: url('/assets/images/hero-bg.jpg') top center;
+    background-size: cover;
+    padding: 0;
+    position: relative;
+}
+
+#hero::before {
+    content: '';
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+#hero .container {
+    padding-top: 110px;
+}
+
+@media (max-width: 992px) {
+    #hero .container {
+        padding-top: 98px;
+    }
+}
+
+#hero h1 {
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+#hero h1 span {
+    color: #cda45e;
+}
+
+#hero h2 {
+    color: #fff;
+    margin: 10px 0 0 0;
+    font-size: 2rem;
+}
+
+#hero .btns {
+    margin-top: 30px;
+}
+
+#hero .play-btn {
+    width: 94px;
+    height: 94px;
+    background: radial-gradient(#cda45e 50%, rgba(205, 164, 94, 0.4) 52%);
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    line-height: 94px;
+    font-size: 24px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+#hero .play-btn::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#hero .play-btn:hover::after {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+#hero .play-btn:hover .play-icon {
+    color: #cda45e;
+}
+
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+
+    #hero h2 {
+        font-size: 1.5rem;
+    }
+
+    #hero .btns {
+        margin-top: 20px;
+    }
+
+    #hero .play-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 22px;
+    }
+}

@@ -1,0 +1,38 @@
+#topbar {
+    height: 40px;
+    font-size: 14px;
+    transition: all 0.5s;
+    z-index: 50;
+    width: 100%;
+  }
+  
+  #topbar.topbar-scrolled {
+    top: -40px;
+  }
+  
+  /* Styling for the language section */
+  #topbar .language ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #cda45e;
+  }
+  
+  #topbar .language ul li + li {
+    padding-left: 10px;
+  }
+  
+  #topbar .language ul li + li::before {
+    display: inline-block;
+    padding-right: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    content: '/';
+  }
+  
+  /* Padding for content to avoid overlap */
+  body {
+    padding-top: 40px; /* Ensure there's space for the fixed top bar */
+  }
+  
