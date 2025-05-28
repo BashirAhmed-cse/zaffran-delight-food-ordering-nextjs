@@ -89,62 +89,65 @@ export default function CartPage() {
 
   return (
     <section id="menu" className="menu section-bg">
-      <div
-        className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2"
-        data-aos="fade-up"
-      >
-        <div className="text-center">
-          <SectionHeaders mainHeader="Cart" />
-        </div>
-        <div className="mt-8 grid gap-8 grid-cols-2">
-          <div>
-            {cartProducts?.length === 0 && (
-              <div>No products in your shopping cart</div>
-            )}
-            {cartProducts?.length > 0 &&
-              cartProducts.map((product, index) => (
-                <CartProduct
-                  key={index}
-                  product={product}
-                  index={index}
-                  onRemove={removeCartProduct}
-                />
-              ))}
-            <div className="py-2 pr-16 flex justify-end items-center">
-              <div className="text-gray-white">
-                Subtotal:
-                <br />
-                Delivery:
-                <br />
-                Total:
-              </div>
-              <div className="font-semibold pl-2 text-right">
-                ${subtotal}
-                <br />
-                $5
-                <br />${subtotal + 5}
-              </div>
-            </div>
+  <div
+    className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"
+    data-aos="fade-up"
+  >
+    <div className="text-center">
+      <SectionHeaders mainHeader="Cart" />
+    </div>
+    <div className="mt-8 grid gap-8 grid-cols-1 md:grid-cols-2">
+      <div>
+        {cartProducts?.length === 0 && (
+          <div>No products in your shopping cart</div>
+        )}
+        {cartProducts?.length > 0 &&
+          cartProducts.map((product, index) => (
+            <CartProduct
+              key={index}
+              product={product}
+              index={index}
+              onRemove={removeCartProduct}
+            />
+          ))}
+        <div className="py-2 pr-4 md:pr-16 flex justify-end items-center">
+          <div className="text-gray-white">
+            Subtotal:
+            <br />
+            Delivery:
+            <br />
+            Total:
           </div>
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <h2 className="text-2xl text-primary font-extrabold">Checkout</h2>
-            <form onSubmit={proceedToCheckout}>
-              <AddressInputs
-                addressProps={address}
-                setAddressProp={handleAddressChange}
-              />
-           
-              <div className="flex items-center justify-center mt-4">
-                <button type="submit" class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-                <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
-                 Pay ${subtotal + 5}
-                </span>
-              </button>
-              </div>
-            </form>
+          <div className="font-semibold pl-2 text-right">
+            ${subtotal}
+            <br />
+            $5
+            <br />${subtotal + 5}
           </div>
         </div>
       </div>
-    </section>
+      <div className="bg-gray-100 p-4 rounded-lg">
+        <h2 className="text-2xl text-primary font-extrabold">Checkout</h2>
+        <form onSubmit={proceedToCheckout}>
+          <AddressInputs
+            addressProps={address}
+            setAddressProp={handleAddressChange}
+          />
+          <div className="flex items-center justify-center mt-4">
+            <button
+              type="submit"
+              className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+            >
+              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                Pay ${subtotal + 5}
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
   );
 }
