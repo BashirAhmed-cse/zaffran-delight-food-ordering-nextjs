@@ -1,11 +1,13 @@
 'use client';
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import MenuItem from "@/components/menu/MenuItem";
-import Image from "next/image";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import SectionTitle from "@/components/SectionTitle";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function HomeMenu() {
   const [bestSellers, setBestSellers] = useState([]);
+
   useEffect(() => {
     fetch('/api/menu-items').then(res => {
       res.json().then(menuItems => {
@@ -13,25 +15,30 @@ export default function HomeMenu() {
       });
     });
   }, []);
+
   return (
-    <section className="">
-      <div className="absolute left-0 right-0 w-full justify-start">
-        <div className="absolute left-0 -top-[70px] text-left -z-10">
-          <Image src={'/sallad1.png'} width={109} height={189}  alt={'sallad'} />
+    <section
+      id="specials"
+      className="relative py-16 bg-cover bg-center"
+      style={{ backgroundImage: 'url("/assets/images/about-bg.jpg")' }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle title="Our Specials" subtitle="Order your favorite" />
+
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
+          {bestSellers?.length > 0 && bestSellers.map(item => (
+            <div
+              key={item._id}
+              className=""
+            >
+              <MenuItem {...item} />
+              
+              
+            </div>
+          ))}
         </div>
-        <div className="absolute -top-[100px] right-0 -z-10">
-          <Image src={'/sallad2.png'} width={107} height={195} alt={'sallad'} />
-        </div>
-      </div>
-      <div className="text-center mb-4">
-        <SectionHeaders
-          subHeader={'check out'}
-          mainHeader={'Our Best Sellers'} />
-      </div>
-      <div className="grid sm:grid-cols-3 gap-4">
-        {bestSellers?.length > 0 && bestSellers.map(item => (
-          <MenuItem key={item._id} {...item} />
-        ))}
       </div>
     </section>
   );

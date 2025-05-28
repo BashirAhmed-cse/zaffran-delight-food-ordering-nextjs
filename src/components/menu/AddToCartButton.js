@@ -5,7 +5,7 @@ export default function AddToCartButton({
 }) {
   if (!hasSizesOrExtras) {
     return (
-      <div className="flying-button-parent mt-4">
+      <div className="flying-button-parent p-1 bg-gray-800 rounded-md">
         <FlyingButton
           targetTop={'5%'}
           targetLeft={'95%'}

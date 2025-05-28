@@ -38,11 +38,15 @@ export default function Header() {
   const status = session?.status;
   const userData = session.data?.user;
   let userName = userData?.name || userData?.email;
+
   const {cartProducts} = useContext(CartContext);
+  
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   if (userName && userName.includes(' ')) {
     userName = userName.split(' ')[0];
   }
+
   return (
     <header>
       <div className="flex items-center md:hidden justify-between">
