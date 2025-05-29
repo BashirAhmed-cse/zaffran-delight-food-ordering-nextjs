@@ -453,22 +453,23 @@ export const whyUs = [
     },
     {
       id: 2,
-      name: 'About',
-      target: 'about',
-      active: false,
-    },
-    {
-      id: 3,
-      name: 'Specials',
-      target: 'specials',
-      active: false,
-    },
-    {
-      id: 4,
       name: 'Menu',
       target: 'menu',
       active: false,
     },
+    {
+      id: 3,
+      name: 'Order',
+      target: 'menu',
+      active: false,
+    },
+    // {
+    //   id: 3,
+    //   name: 'Specials',
+    //   target: 'specials',
+    //   active: false,
+    // },
+   
     // {
     //   id: 5,
     //   name: 'Gallery',
@@ -476,11 +477,18 @@ export const whyUs = [
     //   active: false,
     // },
     {
-      id: 6,
+      id: 4,
+      name: 'About',
+      target: 'about',
+      active: false,
+    },
+    {
+      id: 5,
       name: 'Contact',
       target: 'contact',
       active: false,
     },
+
   ];
   
   export const bookings = [

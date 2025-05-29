@@ -29,15 +29,15 @@ function AuthLinks({ status, userName }) {
   if (status === "unauthenticated") {
     return (
       <div className="flex gap-4 items-center">
-        <Link href="/login" className="text-white text-sm font-medium">
-          Login
+        <Link href="/login" className="bg-primary rounded-full text-white text-sm px-4 py-2 hover:bg-opacity-80 transition">
+          Sign in
         </Link>
-        <Link
+        {/* <Link
           href="/register"
           className="bg-primary rounded-full text-white text-sm px-4 py-2 hover:bg-opacity-80 transition"
         >
           Register
-        </Link>
+        </Link> */}
       </div>
     );
   }

@@ -25,13 +25,13 @@ export default function Home() {
           <About />
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           <Specials />
-        </motion.div>
+        </motion.div> */}
 
         {/* <motion.div
           initial={{ opacity: 0 }}

@@ -38,7 +38,7 @@ export default function HomeMenu() {
 
   return (
     <section
-      id="specials"
+      id="menu"
       className="relative py-16 bg-cover bg-center"
       style={{ backgroundImage: 'url("/assets/images/about-bg.jpg")' }}
     >
